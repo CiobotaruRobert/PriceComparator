@@ -29,9 +29,17 @@ public class BasketService {
             int bestDiscount = 0;
             double bestFinalPrice = Double.MAX_VALUE;
 
+            Map<String, PriceEntry> latestEntries = new HashMap<>();
             for (PriceEntry pe : product.getPriceEntries()) {
                 if (pe.getDate().isAfter(date)) continue;
 
+                PriceEntry currentLatest = latestEntries.get(pe.getStore());
+                if (currentLatest == null || pe.getDate().isAfter(currentLatest.getDate())) {
+                    latestEntries.put(pe.getStore(), pe);
+                }
+            }
+
+            for (PriceEntry pe : latestEntries.values()) {
                 int discount = product.getDiscountEntries().stream()
                         .filter(de -> de.getStore().equals(pe.getStore())
                                 && !date.isBefore(de.getFromDate())
