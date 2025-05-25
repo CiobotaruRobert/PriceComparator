@@ -15,7 +15,10 @@ public class DiscountInfoDto {
     private String productId;
     private String productName;
     private String productBrand;
+    private String storeName;
     private LocalDate fromDate;
     private LocalDate toDate;
     private int discountPercentage;
+    private double normalPrice;
+    private double discountedPrice;
 }

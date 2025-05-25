@@ -21,9 +21,8 @@ public class DiscountController {
     @GetMapping("/best")
     public List<DiscountInfoDto> getBestDiscounts(@RequestParam(required = false) String date,
                                                   @RequestParam(defaultValue = "10") int limit) {
-//        LocalDate queryDate = (date != null) ? LocalDate.parse(date) : LocalDate.now();
-        LocalDate fixedDate = LocalDate.of(2025, 5, 2);
-        return discountService.getBestDiscounts(fixedDate, limit);
+        LocalDate queryDate = (date != null) ? LocalDate.parse(date) : LocalDate.now();
+        return discountService.getBestDiscounts(queryDate, limit);
     }
 
     @GetMapping("/new")
