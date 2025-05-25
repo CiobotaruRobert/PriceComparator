@@ -27,7 +27,7 @@ public class DiscountController {
 
     @GetMapping("/new")
     public List<DiscountInfoDto> getNewlyAddedDiscountDetails() {
-        LocalDate testDate = LocalDate.of(2025, 5, 2);
-        return discountService.getNewDiscounts(testDate);
+        LocalDate today = LocalDate.now();
+        return discountService.getNewDiscounts(today);
     }
 }
